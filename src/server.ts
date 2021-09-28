@@ -2,6 +2,7 @@ import express, {Request, Response, NextFunction} from 'express';
 import mongoose from 'mongoose';
 import config from './config/config';
 import logging from './config/logging';
+import api from './endpoints/api';
 import path from 'path';
 const app = express();
 const NAMESPACE = 'SERVER';
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 app.use('/static', express.static(path.join(__dirname,'public')));
+app.use('/api/', api);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
