@@ -2,8 +2,9 @@ import express, {Request, Response, NextFunction} from 'express';
 import mongoose from 'mongoose';
 import config from './config/config';
 import logging from './config/logging';
-import api from './endpoints/api';
 import path from 'path';
+import ProductModel from './models/product.model';
+
 const app = express();
 const NAMESPACE = 'SERVER';
 
@@ -12,7 +13,6 @@ app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 app.use('/static', express.static(path.join(__dirname,'public')));
-app.use('/api/', api);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
@@ -22,8 +22,19 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-app.get('/', (req: Request, res: Response) => {
-    res.render('pages/index');
+app.get('/', async (req: Request, res: Response) => {
+    try{
+        const products = (await ProductModel.find({})).map(product => {
+            const {id, name, description, price, image} = product;
+            return {
+                id, name, description, price, image
+            }
+        });
+        return res.render('pages/index', {products});
+    }catch(server_err){
+        res.status(500).json({message: 'Something went wrong'})
+    }
+
 });
 
 app.use((req: Request, res: Response, next: NextFunction) => {
