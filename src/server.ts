@@ -26,9 +26,7 @@ app.get('/', async (req: Request, res: Response) => {
     try{
         const products = (await ProductModel.find({})).map(product => {
             const {id, name, description, price, image} = product;
-            return {
-                id, name, description, price, image
-            }
+            return {id, name, description, price, image};
         });
         return res.render('pages/index', {products});
     }catch(server_err){
