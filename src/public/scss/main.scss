@@ -1,3 +1,98 @@
-body{
-    background-color:#666;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+  padding: 0;
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  background: #f8f9fa;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+}
+
+.container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0, auto;
+}
+
+.header{
+    background: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    .navbar{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+        .navbar__logo-wraper{
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            padding: 10px 0;
+            img{
+                cursor: pointer;
+                width: 145px;
+                vertical-align: middle;
+                max-width: 100%;
+            }
+        }
+        .navbar-nav{
+            position: relative;
+            min-width: 200px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            font-family: 'Rubik', sans-serif;
+            font-size: 23px;
+            font-weight: 700;
+            padding: 20px 0;
+            display: flex;
+            .navbar-menu{
+                margin-right: 26px;
+                cursor: pointer;
+                .menu-item{
+                    padding: 8px, 12px;
+                    text-decoration: none;
+                    background-color: rgba(0, 0, 0, 0);
+                    color: rgb(14, 7, 60);
+                    display: block;
+                    line-height: 28px;
+                    transition: color .4s;
+                    &:hover{
+                        color: #ffff00;
+                        transition: color .4s;
+                    }
+                }
+                .navbar__submenu{
+                    border: 1px solid #000;
+                    //margin-top: 22px;
+                    background: #fff;
+                    min-width: 200px;
+                    position: absolute;
+                    visibility: hidden;
+                    opacity: 0;
+                }
+                &:hover .navbar__submenu{
+                    visibility: visible;
+                    opacity: 1;
+                    transition: visibility 0s, opacity 0.5s linear;
+                }
+            }
+        }
+    }
 }
