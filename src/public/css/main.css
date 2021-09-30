@@ -90,8 +90,8 @@ main {
   top: 100%;
 }
 .header .navbar .navbar_controller {
-  border: 1px dashed #000;
   border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   width: 50px;
   text-align: center;
   cursor: pointer;
@@ -99,8 +99,8 @@ main {
 }
 .header .navbar .navbar_controller:hover {
   background-color: #febe10;
+  border-color: #febe10;
   color: #fff;
-  transition: background-color 0.5s, color 0.5s;
 }
 
 /*# sourceMappingURL=main.css.map */
