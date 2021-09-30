@@ -24,61 +24,75 @@ main {
 }
 
 .header .navbar {
-  background-color: #fff;
+  position: relative;
+  padding: 0.5rem 1rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  padding: 0;
+  background-color: #fff;
 }
 .header .navbar .navbar_logo {
-  cursor: pointer;
-  padding: 10px, 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
 }
 .header .navbar .navbar-nav {
-  flex-direction: row;
   display: flex;
-  margin: 0;
+  flex-direction: row;
   padding-left: 0;
+  margin: 0;
   list-style: none;
 }
-.header .navbar .navbar-nav .menu-item {
+.header .navbar .navbar-nav li {
   cursor: pointer;
   list-style: none;
   position: relative;
   transition: 0.3s;
-  display: list-item;
+  margin: 0;
 }
-.header .navbar .navbar-nav .menu-item.menu-item-has-children:hover .sub-menu {
-  visibility: visible;
-  opacity: 1;
-}
-.header .navbar .navbar-nav .menu-item.menu-item-has-children .sub-menu {
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  background-color: #fff;
-  transition: visibility 0s, opacity 0.3s linear;
-}
-.header .navbar .navbar-nav .menu-item a {
-  min-width: 150px;
+.header .navbar .navbar-nav li a {
   text-decoration: none;
-  position: relative;
-  font-weight: 500;
-  color: #0e073c;
-  padding: 15px 15px;
   display: block;
-  transition: color 1s;
-  font-size: 22px;
+  padding: 30px 15px;
+  color: #0e073c;
+  font-weight: 500;
+  position: relative;
 }
-.header .navbar .navbar-nav .menu-item a:hover {
+.header .navbar .navbar-nav li a:hover {
   color: #febe10;
-  transition: color 0.5s;
+}
+.header .navbar .navbar-nav li .sub-menu {
+  position: absolute;
+  top: 110%;
+  min-width: 250px;
+  padding-left: 0;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 0;
+  box-shadow: 0 2px 32px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+.header .navbar .navbar-nav li .sub-menu a {
+  border-bottom: 1px dashed #e1e1e1;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.header .navbar .navbar-nav li.menu-item-has-children:hover .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  top: 100%;
 }
 .header .navbar .navbar_controller {
   border: 1px dashed #000;
   border-radius: 50%;
-  width: 60px;
+  width: 50px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.5s, color 0.5s;
