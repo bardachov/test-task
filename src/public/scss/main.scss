@@ -3,10 +3,13 @@
   box-sizing: border-box;
 }
 
+$yellow: #febe10;
+
 body {
   background-color: #fff;
+  font-family: Rubik,sans-serif;
+  margin: 0;
   padding: 0;
-  font-family: 'Rubik', sans-serif;
   font-size: 16px;
   line-height: 28px;
   font-weight: 400;
@@ -22,76 +25,71 @@ main {
   height: 100vh;
 }
 
-.container{
-    width: 100%;
-    max-width: 1200px;
-    margin: 0, auto;
-}
-
 .header{
-    background: #fff;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
     .navbar{
+        background-color: #fff;
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         justify-content: space-between;
         position: relative;
-        .navbar__logo-wraper{
-            align-items: center;
-            justify-content: center;
-            text-align: left;
-            padding: 10px 0;
-            img{
-                cursor: pointer;
-                width: 145px;
-                vertical-align: middle;
-                max-width: 100%;
-            }
+        .navbar_logo{
+            cursor: pointer;
+            padding: 10px, 0;
         }
         .navbar-nav{
-            position: relative;
-            min-width: 200px;
-            flex-wrap: wrap;
             flex-direction: row;
-            font-family: 'Rubik', sans-serif;
-            font-size: 23px;
-            font-weight: 700;
-            padding: 20px 0;
             display: flex;
-            .navbar-menu{
-                margin-right: 26px;
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            .menu-item{
                 cursor: pointer;
-                .menu-item{
-                    padding: 8px, 12px;
+                list-style: none;
+                position: relative;
+                transition: 0.3s;
+                display: list-item;
+                &.menu-item-has-children{
+                    &:hover .sub-menu{
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                    .sub-menu{
+                        position: absolute;
+                        visibility: hidden;
+                        opacity: 0;
+                        background-color: #fff;
+                        transition: visibility 0s, opacity 0.3s linear;
+                    };
+                }
+                a {
+                    min-width: 150px;
                     text-decoration: none;
-                    background-color: rgba(0, 0, 0, 0);
-                    color: rgb(14, 7, 60);
+                    position: relative;
+                    font-weight: 500;
+                    color: #0e073c;
+                    padding: 15px 15px;
                     display: block;
-                    line-height: 28px;
-                    transition: color .4s;
+                    transition: color 1s;
+                    font-size: 22px;
                     &:hover{
-                        color: #ffff00;
-                        transition: color .4s;
+                        color: $yellow;
+                        transition: color 0.5s;
                     }
                 }
-                .navbar__submenu{
-                    border: 1px solid #000;
-                    //margin-top: 22px;
-                    background: #fff;
-                    min-width: 200px;
-                    position: absolute;
-                    visibility: hidden;
-                    opacity: 0;
-                }
-                &:hover .navbar__submenu{
-                    visibility: visible;
-                    opacity: 1;
-                    transition: visibility 0s, opacity 0.5s linear;
-                }
+            }
+        }
+        .navbar_controller{
+            border: 1px dashed #000;
+            border-radius: 50%;
+            width: 60px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.5s, color .5s;
+            &:hover{
+                background-color: $yellow;
+                color: #fff;
+                transition: background-color 0.5s, color .5s;
             }
         }
     }

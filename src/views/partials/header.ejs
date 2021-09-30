@@ -1,22 +1,37 @@
 <nav class="navbar">
-  <div class="navbar__logo-wraper">
-    <a href="/" class="navbar_logo">
-      <img src="/static/images/logo.png" alt="logo">
+  <div class="navbar_logo-wrapper">
+    <a class="navbar_logo" href="/">
+      <img alt="logo" src="static/images/logo.png" />
     </a>
   </div>
-  <div class="navbar-nav">
-    <div class="navbar-menu">
-      <a href="/" class="menu-item">Home</a>
-      <div class="navbar__submenu">
-        <a href="/" class="menu-item">Home V1</a>
-        <a href="/" class="menu-item">Home V2</a>
-      </div>
-    </div>
-    <div class="navbar-menu">
-      <a href="/" class="menu-item">About</a>
-    </div>
-  </div>
-  <div class="navbar-control">
-    
+  <ul class="navbar-nav">
+    <li class="menu-item menu-item-has-children">
+      <a>Home</a>
+      <ul class="sub-menu">
+        <li class="menu-item">
+          <a href="/">Home v1</a>
+        </li>
+        <li class="menu-item">
+          <a href="/">Home v2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="menu-item">
+      <a href="/">About</a>
+    </li>
+    <li class="menu-item menu-item-has-children">
+      <a>Service</a>
+      <ul class="sub-menu">
+        <li class="menu-item">
+          <a href="/">Services</a>
+        </li>
+        <li class="menu-item">
+          <a href="/">Service Details</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <div class="navbar_controller-inner">
+    <div class="navbar_controller"><i class='bx bx-menu bx-md'></i></div>
   </div>
 </nav>

@@ -11,5 +11,6 @@ package.lock
 node_modules/
 jspm_packages/
 
+src/public/css
 build
 temp

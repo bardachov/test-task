@@ -5,8 +5,9 @@
 
 body {
   background-color: #fff;
+  font-family: Rubik, sans-serif;
+  margin: 0;
   padding: 0;
-  font-family: "Rubik", sans-serif;
   font-size: 16px;
   line-height: 28px;
   font-weight: 400;
@@ -22,78 +23,70 @@ main {
   height: 100vh;
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0, auto;
-}
-
-.header {
-  background: #fff;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  width: 100%;
-}
 .header .navbar {
+  background-color: #fff;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   position: relative;
 }
-.header .navbar .navbar__logo-wraper {
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  padding: 10px 0;
-}
-.header .navbar .navbar__logo-wraper img {
+.header .navbar .navbar_logo {
   cursor: pointer;
-  width: 145px;
-  vertical-align: middle;
-  max-width: 100%;
+  padding: 10px, 0;
 }
 .header .navbar .navbar-nav {
-  position: relative;
-  min-width: 200px;
-  flex-wrap: wrap;
   flex-direction: row;
-  font-family: "Rubik", sans-serif;
-  font-size: 23px;
-  font-weight: 700;
-  padding: 20px 0;
   display: flex;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
 }
-.header .navbar .navbar-nav .navbar-menu {
-  margin-right: 26px;
+.header .navbar .navbar-nav .menu-item {
   cursor: pointer;
+  list-style: none;
+  position: relative;
+  transition: 0.3s;
+  display: list-item;
 }
-.header .navbar .navbar-nav .navbar-menu .menu-item {
-  padding: 8px, 12px;
-  text-decoration: none;
-  background-color: rgba(0, 0, 0, 0);
-  color: #0e073c;
-  display: block;
-  line-height: 28px;
-  transition: color 0.4s;
+.header .navbar .navbar-nav .menu-item.menu-item-has-children:hover .sub-menu {
+  visibility: visible;
+  opacity: 1;
 }
-.header .navbar .navbar-nav .navbar-menu .menu-item:hover {
-  color: #ffff00;
-  transition: color 0.4s;
-}
-.header .navbar .navbar-nav .navbar-menu .navbar__submenu {
-  border: 1px solid #000;
-  background: #fff;
-  min-width: 200px;
+.header .navbar .navbar-nav .menu-item.menu-item-has-children .sub-menu {
   position: absolute;
   visibility: hidden;
   opacity: 0;
+  background-color: #fff;
+  transition: visibility 0s, opacity 0.3s linear;
 }
-.header .navbar .navbar-nav .navbar-menu:hover .navbar__submenu {
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity 0.5s linear;
+.header .navbar .navbar-nav .menu-item a {
+  min-width: 150px;
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  color: #0e073c;
+  padding: 15px 15px;
+  display: block;
+  transition: color 1s;
+  font-size: 22px;
+}
+.header .navbar .navbar-nav .menu-item a:hover {
+  color: #febe10;
+  transition: color 0.5s;
+}
+.header .navbar .navbar_controller {
+  border: 1px dashed #000;
+  border-radius: 50%;
+  width: 60px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s;
+}
+.header .navbar .navbar_controller:hover {
+  background-color: #febe10;
+  color: #fff;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 /*# sourceMappingURL=main.css.map */
