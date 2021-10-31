@@ -1,5 +1,6 @@
 import {ConnectOptions} from 'mongoose';
 
+const NODE_ENV = process.env.NODE_ENV;
 const SERVER_PORT: number = Number(process.env.PORT) || 3000 ;
 const SERVER = {
     port: SERVER_PORT
@@ -18,6 +19,7 @@ const MONGO = {
 };
 
 const config = {
+    node: NODE_ENV,
     mongo: MONGO,
     server: SERVER
 };
