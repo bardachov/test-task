@@ -38,8 +38,8 @@ body{
             border-bottom: 4px solid $blue;
             width: 10px; height: 10px;
             transform: rotate(45deg);
-            transition-property: border-bottom, border-right;
-            transition: 0.5s;
+            transition-property: border-bottom, border-right opacity visibility;
+            transition: 0.3s;
             &.array-rigth{
                 transform: rotate(-45deg);
             }
@@ -78,13 +78,13 @@ body{
                     line-height: 40px;
                     box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
                     width: 250px;
-
-                    //hide / show
                     transform: translateY(20px);
-                    visibility: hidden;
-                    opacity: 0;
                     transition: 0.5s;
-                    transition-property: transform, opacity;
+                    transition-property: transform;
+                    //hide / show
+
+                    opacity: 0;
+                    visibility: hidden;
                     .sub-item{
                         width: 100%;
                         position: relative;
@@ -116,13 +116,13 @@ body{
                                 line-height: 40px;
                                 width: 250px;
                                 box-shadow: 0 0px 25px rgb(0 0 0 / 20%);
+                                transform: translateX(-5px);
+                                transition: 0.5s;
+                                transition-property: transform;
 
                                 //hide / show
-                                visibility: hidden;
-                                transform: translateX(-5px);
                                 opacity: 0;
-                                transition: 0.5s;
-                                transition-property: transform, opacity;
+                                visibility: hidden;
                                 .more-item{
                                     padding: 7px 0;
                                     border-bottom: 1px dashed #e1e1e1;
@@ -145,21 +145,28 @@ body{
                         }
                         //show more-menu
                         &:hover .more-menu{
-                            visibility: visible;
-                            pointer-events: all;
+                            animation: 0.4s Show;
+                            animation-fill-mode: forwards;
                             transform: translateY(0);
-                            opacity: 1;
                         }
                     }
                 }
                 //show sub-menu
                 &:hover .sub-menu{
-                    visibility: visible;
-                    pointer-events: all;
+                    animation: 0.4s Show;
+                    animation-fill-mode: forwards;
                     transform: translateY(0);
-                    opacity: 1;
                 }
             }
+            @keyframes Show {
+                0% {
+                    opacity: 0;
+                }
+                  100% {
+                    visibility: visible;
+                    opacity: 1;
+                }
+              }
         }
     }
 }
