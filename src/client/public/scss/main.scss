@@ -19,6 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
 }
 
 .header{
@@ -55,10 +56,11 @@ body{
                 > a{
                     text-decoration: none;
                     transition: color 0.5s;
-                    font-size: 1.3em;
-                    font-weight: 800;
+                    font-size: 16px;
+                    font-weight: 700;
                     color: $blue;
                     margin: 35px;
+                    padding: 25px 0;
                     &:hover{
                         .array{
                             border-right: 4px solid $yellow;
@@ -74,7 +76,7 @@ body{
                 .sub-menu {
                     position: absolute;
                     background: #fff;
-                    top: 25px;
+                    top: 35px;
                     line-height: 40px;
                     box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
                     width: 250px;
@@ -86,7 +88,6 @@ body{
                     opacity: 0;
                     visibility: hidden;
                     .sub-item{
-                        width: 100%;
                         position: relative;
                         list-style: none;
                         padding: 7px 0;
@@ -94,8 +95,8 @@ body{
                         border-bottom: 1px dashed #e1e1e1;;
                         a{
                             text-decoration: none;
-                            font-size: 1.2em;
-                            font-weight: 800;
+                            font-size: 16px;
+                            font-weight: 700;
                             color: $blue;
                             transition: color 0.5s;
                         }
@@ -129,8 +130,8 @@ body{
                                     list-style: none;
                                     a {
                                         text-decoration: none;
-                                        font-size: 1.2em;
-                                        font-weight: 800;
+                                        font-size: 16px;
+                                        font-weight: 700;
                                         color: $blue;
                                         transition: color 0.5s;
                                     }
