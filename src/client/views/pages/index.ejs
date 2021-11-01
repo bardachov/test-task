@@ -82,11 +82,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
-                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
-                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
-                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
-                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
+                    <% for( let i = 0; i < products.length; i++ ) { %>
+                        <%- include('../partials/product', {title: products[i].name, image: products[i].image, price: products[i].price}) %>
+                    <% } %>
                 </div>
             </div>
         </section>
