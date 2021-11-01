@@ -15,6 +15,10 @@
                 flex: 0 0 50%;
                 max-width: 50%;
             }
+            &.col-25{
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
         }
     }
     .section{
@@ -75,6 +79,7 @@
             overflow: hidden;
             margin-bottom: 30px;
             .category-image img{
+                transition: 0.3s;
                 position: relative;
                 vertical-align: middle;
             }
@@ -101,7 +106,7 @@
                     .category-text{
                         color: #fff;
                         margin-bottom: 20px;
-                    }         
+                    }
                     .category-btn{
                         position: relative;
                         display: inline-block;
@@ -118,8 +123,77 @@
                     }   
                 }
             }
+            &:hover{
+                .category-image img{
+                    transform: scale(1.1);
+                }
+            }
         }
-        .select-items{
+        .product{
+            position: relative;
+            overflow: hidden;
+            padding: 0, 15px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            .product-image img{
+                transition: 0.3s;
+                position: relative;
+                vertical-align: middle;
+            }
+            .product-inner{
+                position: relative;
+                left: 0;
+                top: 0;
+                padding: 25px;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                .product-body{
+                    position: relative;
+                    background-color: initial;
+                    text-align: center;
+                    .product-title{
+                        font-size: 20px;
+                        background-color: initial;
+                        text-decoration: none;
+                        color: #0e073c;
+                        transition: color 0.5s;
+                        &:hover{
+                            color: $yellow;
+                        }
+                    }
+                    .product-price{
+                        color: $yellow;
+                        font-weight: 900;
+                        font-size: 16px;
+                        cursor: text;
+                    }
+                    .product-btn{
+                        background-color: initial;
+                        text-decoration: none;
+                        display: inline-block;
+                        color: #0e073c;
+                        font-size: 18px;
+                        border-bottom: 1px solid #0e073c;
+                        padding-bottom: 0;
+                        margin-top: 5px;
+                        transition: color 0.3s;
+                        &:hover{
+                            color: $yellow;
+                        }
+                    }
+                }
+            }
+            &:hover{
+                .product-image img{
+                    transform: scale(1.1);
+                }
+            }
+        }
+        .tab-list{
+            padding-top: 40px;
             position: relative;
             display: flex;
             flex-wrap: wrap;
@@ -127,11 +201,11 @@
             justify-content: space-between;
             list-style: none;
             margin-bottom: 20px;
-            .select-item{
+            .tab-item{
                 position: relative;
                 display: flex;
                 flex-direction: column;
-                .select-text{
+                .tab-text{
                     position: relative;
                     display: flex;
                     flex-direction: column;
@@ -146,7 +220,7 @@
                     cursor: pointer;
                     transition: 0.3s;
                 }
-                .select-arrow{
+                .tab-arrow{
                     position: relative;
                     justify-content: flex-end;
                     align-items: center;
@@ -158,20 +232,20 @@
                     border-top: 20px solid #fff;
                 }
                 &:hover{
-                    .select-text{
+                    .tab-text{
                         color: #fff;
                         background-color: $yellow;
                     }
-                    .select-arrow{
+                    .tab-arrow{
                         border-top: 20px solid $yellow;
                     }
                 }
                 &.active{
-                    .select-text{
+                    .tab-text{
                         color: #fff;
                         background-color: $yellow;
                     }
-                    .select-arrow{
+                    .tab-arrow{
                         border-top: 20px solid $yellow;
                     }
                 }

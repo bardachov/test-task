@@ -71,15 +71,22 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <ul class="select-items">
-                            <li class="select-item active"><a class="select-text">Beehive</a><div class="select-arrow"></div></li>
-                            <li class="select-item"><a class="select-text">Beekeeper</a> <div class="select-arrow"></div></li>
-                            <li class="select-item"><a class="select-text">Honey</a> <div class="select-arrow"></div></li>
-                            <li class="select-item"><a class="select-text">BeeHoney</a> <div class="select-arrow"></div></li>
-                            <li class="select-item"><a class="select-text">Beekeeping</a> <div class="select-arrow"></div></li>
-                            <li class="select-item"><a class="select-text">HoneyBee</a> <div class="select-arrow"></div></li>
+                        <ul class="tab-list">
+                            <%- include('../partials/tab-item', {title: 'Beehive', active: true}) %> 
+                            <%- include('../partials/tab-item', {title: 'Beekeeper'}) %>
+                            <%- include('../partials/tab-item', {title: 'Honey'}) %>
+                            <%- include('../partials/tab-item', {title: 'BeeHoney'}) %>
+                            <%- include('../partials/tab-item', {title: 'Beekeeping'}) %>
+                            <%- include('../partials/tab-item', {title: 'HoneyBee'}) %>
                         </ul>
                     </div>
+                </div>
+                <div class="row">
+                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
+                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
+                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
+                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
+                    <%- include('../partials/product', {title: 'Ambrosia Honey', image: '/static/images/shop/products/1.jpg', price: '120.50'}) %>
                 </div>
             </div>
         </section>

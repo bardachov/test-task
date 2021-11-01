@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.select-items').forEach(node => {
-        const node_items = node.querySelectorAll('.select-item > a')
+    document.querySelectorAll('.tab-list').forEach(node => {
+        const node_items = node.querySelectorAll('.tab-item > a')
         for (const click_item of node_items){
             click_item.addEventListener('click', event => {
                 for (let item of node_items){
