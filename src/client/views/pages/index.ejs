@@ -8,9 +8,56 @@
         <%- include('../partials/menu') %> 
     </header>
     <main class="content">
-        <section class="section">
-            <h2>Main Page</h2>
-        </section>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="column col-50">
+                        <%- include(
+                            '../partials/category',
+                            {
+                                title: 'Freshly Picked Honey',
+                                description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                                image: 'static/images/shop/hot-product/1.jpg'
+                            }
+                        ) %> 
+                    </div>
+                    <div class="column col-50">
+                        <div class="row">
+                            <div class="column">
+                                <%- include(
+                                    '../partials/category',
+                                    {
+                                        title: 'Thanks to the honey bees',
+                                        description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                                        image: 'static/images/shop/hot-product/2.jpg'
+                                    }
+                                ) %>
+                            </div>
+                            <div class="column">
+                                <%- include(
+                                    '../partials/category',
+                                    {
+                                        title: 'Honey that is Bee Honey',
+                                        description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                                        image: 'static/images/shop/hot-product/3.jpg'
+                                    }
+                                ) %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <%- include(
+                            '../partials/category',
+                            {
+                                title: 'Honey tastes so good',
+                                description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                                image: 'static/images/shop/hot-product/4.jpg'
+                            }
+                        ) %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="footer">
         <%- include('../partials/footer') %> 
