@@ -9,7 +9,7 @@
       "outDir": "./build"
     },
     "exclude": [
-      "src/client",
+      "client",
       "node_modules"
     ],
     "include": [

@@ -13,8 +13,8 @@ server.use(express.json());
 server.use(express.urlencoded({extended: false}));
 
 server.set("view engine", "ejs");
-server.set('views', path.join(__dirname, 'client', 'views', 'pages'));
-server.use('/static', express.static(path.join(__dirname,'client', 'public')));
+server.set('views', path.join(__dirname, '..' , 'client', 'views', 'pages'));
+server.use('/static', express.static(path.join(__dirname, '..' , 'client', 'public')));
 
 server.use((req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
