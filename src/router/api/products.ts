@@ -23,7 +23,7 @@ router.post('/', async(req: Request, res: Response) => {
                 id,
                 name: req.body.name.toString(),
                 description: req.body.description?.toString() || '',
-                price: Number(req.body.price),
+                price: req.body.price.toString(),
                 image: req.body.image.toString()
             }
             await ProductsModel.create(product);
