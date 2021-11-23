@@ -1,37 +1,43 @@
-<div class="navigation">
-    <a href="#" class="logo"><img src="/static/images/logo.png" alt="logo"></a>
-    <ul class="menu">
-        <li class="menu-item">
-            <a href="#" class="sub-btn">Home <div class="array"></div></a>
-            <ul class="sub-menu">
-                <li class="sub-item"><a href="#">Home V1</a></li>
-                <li class="sub-item"><a href="#">Home V2</a></li>
-            </ul>
-        </li>
-        <li class="menu-item"><a href="#">About</a></li>
-        <li class="menu-item">
-            <a href="#" class="sub-btn">Pages <div class="array"></div></a>
-            <ul class="sub-menu">
-                <li class="sub-item more">
-                    <a href="#" class="more-btn">Team<div class="array array-rigth"></div></a>
-                    <ul class="more-menu">
-                        <li class="more-item"><a href="#">Team</a></li>
-                        <li class="more-item"><a href="#">Team Detail</a></li>
-                    </ul>
-                </li>
-                <li class="sub-item"><a href="#">FAQ</a></li>
-                <li class="sub-item"><a href="#">Contact</a></li>
-                <li class="sub-item"><a href="#">Gallery</a></li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="#" class="sub-btn">Blog <div class="array"></div></a>
-            <ul class="sub-menu">
-                <li class="sub-item"><a href="#">Blog List</a></li>
-                <li class="sub-item"><a href="#">Blog Grid</a></li>
-                <li class="sub-item"><a href="#">Blog Details</a></li>
-            </ul>
-        </li>
-    </ul>
-    <div class="menu-btn"></div>
-</div>
+<nav class="navigation">
+    <div class="navigation__left">
+        <a href="#" class="navigation__logo">
+            <img class="navigation__logo__image" src="/static/images/logo.png" alt="logo">
+        </a>
+    </div>
+    <div class="navigation__center">
+        <ul class="menu">
+            <li class="menu__item">
+                <a href="#" class="menu__btn">Home<div class="array menu__array"></div></a>
+                <ul class="menu__sub">
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Home V1</a></li>
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Home V2</a></li>
+                </ul>
+            </li>
+            <li class="menu__item"><a class="menu__text" href="#">About</a></li>
+            <li class="menu__item">
+                <a href="#" class="menu__btn">Pages <div class="array menu__array"></div></a>
+                <ul class="menu__sub">
+                    <li class="menu__sub-item">
+                        <a href="#" class="menu__btn">Team<div class="menu__array menu__array_rigth"></div></a>
+                        <ul class="menu__more-menu">
+                            <li class="menu__more-item"><a class="menu__text" href="#">Team</a></li>
+                            <li class="menu__more-item"><a class="menu__text" href="#">Team Detail</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu__sub-item"><a class="menu__text" href="#">FAQ</a></li>
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Contact</a></li>
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Gallery</a></li>
+                </ul>
+            </li>
+            <li class="menu__item">
+                <a href="#" class="menu__btn">Blog <div class="array menu__array"></div></a>
+                <ul class="menu__sub">
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Blog List</a></li>
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Blog Grid</a></li>
+                    <li class="menu__sub-item"><a class="menu__text" href="#">Blog Details</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="navigation__rigth"></div>
+</nav>
