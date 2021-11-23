@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.tab-list').forEach(node => {
-        const node_items = node.querySelectorAll('.tab-item > a')
+    document.querySelectorAll('.products-filter').forEach(node => {
+        const node_items = node.querySelectorAll('.products-filter__item > .products-filter__text')
         for (const click_item of node_items){
             click_item.addEventListener('click', event => {
                 for (let item of node_items){
-                    item != event.currentTarget ? item.parentElement.classList.remove('active') : item.parentElement.classList.add('active');
+                    item != event.currentTarget ? item.parentElement.classList.remove('products-filter__item_active') : item.parentElement.classList.add('products-filter__item_active');
                 };
             });
         };

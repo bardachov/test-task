@@ -4,91 +4,79 @@
     <%- include('../partials/head') %> 
 </head>
 <body>
-    <header class="header">
+    <header>
         <%- include('../partials/menu') %> 
     </header>
-    <main class="content">
-        <div class="section">
-            <div class="container">
+    <div class="container">
+        <main class="content">
+            <article class="category__container">
                 <div class="row">
-                    <div class="column col-50">
-                        <%- include(
-                            '../partials/category',
-                            {
-                                title: 'Freshly Picked Honey',
-                                description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
-                                image: 'static/images/shop/hot-product/1.jpg'
-                            }
-                        ) %> 
+                    <div class="row__column row__column_50">
+                        <%- include('../partials/content/category', {
+                            title: 'Freshly Picked Honey',
+                            description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                            image: 'static/images/shop/hot-product/1.jpg'
+                        })%>
                     </div>
-                    <div class="column col-50">
+                    <div class="row__column row__column_50">
                         <div class="row">
-                            <div class="column">
-                                <%- include(
-                                    '../partials/category',
-                                    {
-                                        title: 'Thanks to the honey bees',
-                                        description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
-                                        image: 'static/images/shop/hot-product/2.jpg'
-                                    }
-                                ) %>
+                            <div class="row__column">
+                                <%- include('../partials/content/category', {
+                                    title: 'Thanks to the honey bees',
+                                    description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                                    image: 'static/images/shop/hot-product/2.jpg'
+                                })%>
                             </div>
-                            <div class="column">
-                                <%- include(
-                                    '../partials/category',
-                                    {
-                                        title: 'Honey that is Bee Honey',
-                                        description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
-                                        image: 'static/images/shop/hot-product/3.jpg'
-                                    }
-                                ) %>
+                            <div class="row__column">
+                                <%- include('../partials/content/category',{
+                                    title: 'Honey that is Bee Honey',
+                                    description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                                    image: 'static/images/shop/hot-product/3.jpg'
+                                })%>
                             </div>
                         </div>
                     </div>
-                    <div class="column">
-                        <%- include(
-                            '../partials/category',
-                            {
-                                title: 'Honey tastes so good',
-                                description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
-                                image: 'static/images/shop/hot-product/4.jpg'
-                            }
-                        ) %>
+                    <div class="row_column">
+                        <%- include('../partials/content/category',{
+                            title: 'Honey tastes so good',
+                            description: 'Honey is a sweet, viscous food substance made by honey bees and some related insects',
+                            image: 'static/images/shop/hot-product/4.jpg'
+                        })%>
                     </div>
                 </div>
-            </div>
-        </div>
-        <section class="section">
-            <div class="container">
-                <div class="container-heading">
-                    <h5 class="heading heading-small">Our Products</h5>
-                    <div class="heading-arrow">
-                        <span class="points"></span>
-                        <span class="line"></span>
-                        <span class="points"></span>
+            </article>
+            <section class="section products">
+                <div class="heading">
+                    <h5 class="heading__sub">Our Products</h5>
+                    <div class="heading__arrow">
+                        <span class="heading__arrow_points"></span>
+                        <span class="heading__arrow_line"></span>
+                        <span class="heading__arrow_points"></span>
                     </div>
-                    <h2 class="heading heading-large">Best Quality Product</h2>
+                    <h2 class="heading_title">Best Quality Product</h2>
                 </div>
-                <div class="row">
-                    <div class="column">
-                        <ul class="tab-list">
-                            <%- include('../partials/tab-item', {title: 'Beehive', active: true}) %> 
-                            <%- include('../partials/tab-item', {title: 'Beekeeper'}) %>
-                            <%- include('../partials/tab-item', {title: 'Honey'}) %>
-                            <%- include('../partials/tab-item', {title: 'BeeHoney'}) %>
-                            <%- include('../partials/tab-item', {title: 'Beekeeping'}) %>
-                            <%- include('../partials/tab-item', {title: 'HoneyBee'}) %>
-                        </ul>
+                <article class="hot-products">
+                    <div class="row">
+                        <div class="row__column">
+                            <ul class="products-filter">
+                                <%- include('../partials/content/product-filter', {title: 'Beehive', active: true}) %> 
+                                <%- include('../partials/content/product-filter', {title: 'Beekeeper'}) %>
+                                <%- include('../partials/content/product-filter', {title: 'Honey'}) %>
+                                <%- include('../partials/content/product-filter', {title: 'BeeHoney'}) %>
+                                <%- include('../partials/content/product-filter', {title: 'Beekeeping'}) %>
+                                <%- include('../partials/content/product-filter', {title: 'HoneyBee'}) %>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <% for( let i = 0; i < products.length; i++ ) { %>
-                        <%- include('../partials/product', {title: products[i].name, image: products[i].image, price: products[i].price}) %>
-                    <% } %>
-                </div>
-            </div>
-        </section>
-    </main>
+                    <div class="row">
+                        <% for( let i = 0; i < products.length; i++ ) { %>
+                            <%- include('../partials/content/product', {title: products[i].name, image: products[i].image, price: products[i].price}) %>
+                        <% } %>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
     <footer class="footer">
         <%- include('../partials/footer') %> 
     </footer>
