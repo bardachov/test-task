@@ -39,118 +39,120 @@
         color: $blue;
         transition: color 0.5s;
     }
-    .menu__item{
-        position: relative;
-        .menu__array{
-            display: inline-block;
-            border-right: 4px solid $blue;
-            border-bottom: 4px solid $blue;
-            width: 10px; height: 10px;
-            transform: rotate(45deg);
-            transition-property: border-bottom, border-right opacity visibility;
-            transition: 0.3s;
-            margin-left: 5px;
-            &.menu__array_rigth{
-                transform: rotate(-45deg);
-            }
-        }
-        &:hover .menu__sub{
-            animation: 0.4s Show;
-            animation-fill-mode: forwards;
-            transform: translateY(0);
+}
+
+.menu__item{
+    position: relative;
+    .menu__array{
+        display: inline-block;
+        border-right: 4px solid $blue;
+        border-bottom: 4px solid $blue;
+        width: 10px; height: 10px;
+        transform: rotate(45deg);
+        transition-property: border-bottom, border-right opacity visibility;
+        transition: 0.3s;
+        margin-left: 5px;
+        &.menu__array_rigth{
+            transform: rotate(-45deg);
         }
     }
-    
-    .menu__text, .menu__btn {
-        margin: 35px;
-        padding: 25px 0;
-        &:hover{
-            color: $yellow;
-            transition-property: border-bottom, border-right;
-            transition: color 0.3s;
-        }
-        &:hover .menu__array {
-            border-right: 4px solid $yellow;
-            border-bottom: 4px solid $yellow; 
-            transition: color 0.3s;
-            transition-property: border-bottom, border-right;
-        }
+    &:hover .menu__sub{
+        animation: 0.4s Show;
+        animation-fill-mode: forwards;
+        transform: translateY(0);
     }
-    
-    
-    .menu__sub{
-        position: absolute;
-        background: #fff;
-        top: 38px;
-        line-height: 40px;
-        box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
-        width: 250px;
-        transform: translateY(20px);
-        transition: 0.5s;
-        transition-property: transform;
-        opacity: 0;
-        visibility: hidden;
+}
+
+.menu__text, .menu__btn {
+    margin: 35px;
+    padding: 25px 0;
+    &:hover{
+        color: $yellow;
+        transition-property: border-bottom, border-right;
+        transition: color 0.3s;
     }
-    
-    
-    .menu__sub-item{
-        position: relative;
-        list-style: none;
-        padding: 7px 0;
-        cursor: pointer;
-        border-bottom: 1px dashed #e1e1e1;
-        .menu__sub-item_more{
-            position: relative;
-        }
-        &:hover .menu__more-menu{
-            animation: 0.4s Show;
-            animation-fill-mode: forwards;
-            transform: translateY(0);
-        }
-        &:last-child {
-            border-bottom: none;
-        }
+    &:hover .menu__array {
+        border-right: 4px solid $yellow;
+        border-bottom: 4px solid $yellow; 
+        transition: color 0.3s;
+        transition-property: border-bottom, border-right;
     }
-    
-    
+}
+
+
+.menu__sub{
+    position: absolute;
+    background: #fff;
+    top: 38px;
+    line-height: 40px;
+    box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+    width: 250px;
+    transform: translateY(20px);
+    transition: 0.5s;
+    transition-property: transform;
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+.menu__sub-item{
+    position: relative;
+    list-style: none;
+    padding: 7px 0;
+    cursor: pointer;
+    border-bottom: 1px dashed #e1e1e1;
     .menu__sub-item_more{
         position: relative;
     }
-    
-    .menu__more-menu{
-        position: absolute;
-        background: #fff;
-        top: 0;
-        left: 100%;
-        line-height: 40px;
-        width: 250px;
-        box-shadow: 0 0px 25px rgb(0 0 0 / 20%);
-        transform: translateX(-5px);
-        transition: 0.5s;
-        transition-property: transform;
-        opacity: 0;
-        visibility: hidden;
+    &:hover .menu__more-menu{
+        animation: 0.4s Show;
+        animation-fill-mode: forwards;
+        transform: translateY(0);
     }
-    
-    .menu__more-item{
-        padding: 7px 0;
-        border-bottom: 1px dashed #e1e1e1;
-        list-style: none;
-        &:hover .menu__more-text {
-            color: $yellow;
-        }
-        &:last-child {
-            border-bottom: none;
-        }
+    &:last-child {
+        border-bottom: none;
     }
 }
+
+
+.menu__sub-item_more{
+    position: relative;
+}
+
+.menu__more-menu{
+    position: absolute;
+    background: #fff;
+    top: 0;
+    left: 100%;
+    line-height: 40px;
+    width: 250px;
+    box-shadow: 0 0px 25px rgb(0 0 0 / 20%);
+    transform: translateX(-5px);
+    transition: 0.5s;
+    transition-property: transform;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.menu__more-item{
+    padding: 7px 0;
+    border-bottom: 1px dashed #e1e1e1;
+    list-style: none;
+    &:hover .menu__more-text {
+        color: $yellow;
+    }
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
 
 
 @keyframes Show {
     0% {
         opacity: 0;
     }
-        100% {
+    100% {
         visibility: visible;
         opacity: 1;
     }
