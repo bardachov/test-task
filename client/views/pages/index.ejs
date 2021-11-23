@@ -46,14 +46,14 @@
                 </div>
             </article>
             <section class="section products">
-                <div class="heading">
-                    <h5 class="heading__sub">Our Products</h5>
-                    <div class="heading__arrow">
+                <div class="heading heading_center">
+                    <h5 class="heading__sub heading_center">Our Products</h5>
+                    <div class="heading__arrow ">
                         <span class="heading__arrow_points"></span>
                         <span class="heading__arrow_line"></span>
                         <span class="heading__arrow_points"></span>
                     </div>
-                    <h2 class="heading_title">Best Quality Product</h2>
+                    <h2 class="heading__title heading__title_large">Best Quality Product</h2>
                 </div>
                 <article class="hot-products">
                     <div class="row">
@@ -74,6 +74,28 @@
                         <% } %>
                     </div>
                 </article>
+            </section>
+            <section class="section top-picks">
+                <div class="paginator">
+                    <div class="paginator__left">
+                        <div class="heading">
+                            <h5 class="heading__title heading__title_normal">Top Picks</h5>
+                        </div>
+                    </div>
+                    <div class="paginator__rigth">
+                        <div class="paginator__prev paginator__circle">
+                            <i class='bx bx-left-arrow bx-sm' ></i>
+                        </div>
+                        <div class="paginator__next paginator__circle">
+                            <i class='bx bx-right-arrow bx-sm' ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row slider">
+                    <% for( let i = 0; i < 20; i++ ) { %>
+                        <%- include('../partials/content/product', {title: products[0].name, image: products[0].image, price: products[0].price}) %>
+                    <% } %>
+                </div>
             </section>
         </main>
     </div>

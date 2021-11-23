@@ -9,4 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
     });
+
+    $('.slider').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        prevArrow: $('.paginator__prev'),
+        nextArrow: $('.paginator__next')
+    });
 });
