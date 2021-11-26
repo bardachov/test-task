@@ -1,0 +1,16 @@
+{
+    "production":{
+        "secure": {
+            "jwt": "Develop_jwt_secret",
+            "aes": "Develop_aes_secret"
+        },
+        "mongodb": "mongodb+srv://db-admin:super-hard-password@db.8jygu.mongodb.net/db?retryWrites=true&w=majority"
+    },
+    "development": {
+        "secure": {
+            "jwt": "Develop_jwt_secret",
+            "aes": "Develop_aes_secret"
+        },
+        "mongodb": "mongodb+srv://db-admin:super-hard-password@db.8jygu.mongodb.net/db?retryWrites=true&w=majority"
+    }
+}

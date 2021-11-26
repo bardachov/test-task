@@ -6,13 +6,13 @@
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
-      "outDir": "./build"
+      "outDir": "./server/build"
     },
     "exclude": [
       "client",
       "node_modules"
     ],
     "include": [
-      "src"
+      "server/src"
     ]
 }

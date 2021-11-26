@@ -1,25 +1,31 @@
 import express, {NextFunction, Request, Response} from 'express';
 import mongoose from 'mongoose';
 import config from './config/config';
-import logging from './config/logging';
+import logger from './config/logger';
 import path from 'path';
 import api from './router/api';
 import pages from './router/pages';
+import cookieParser from 'cookie-parser';
+import errorHandler from './middleware/error.middleware';
+
 
 const server = express();
 const NAMESPACE = 'SERVER';
+const logging = new logger(NAMESPACE);
 
 server.use(express.json());
+server.use(cookieParser())
 server.use(express.urlencoded({extended: false}));
+server.use(errorHandler);
 
 server.set("view engine", "ejs");
-server.set('views', path.join(__dirname, '..' , 'client', 'views', 'pages'));
-server.use('/static', express.static(path.join(__dirname, '..' , 'client', 'public')));
+server.set('views', path.join(config.clientPath, 'views', 'pages'));
+server.use('/static', express.static(path.join(config.clientPath , 'client', 'public')));
 
 server.use((req: Request, res: Response, next: NextFunction) => {
-    logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
+    logging.info(`METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
     res.on('finish', () => {
-        logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}], STATUS - [${res.statusCode}]`);
+        logging.info(`METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}], STATUS - [${res.statusCode}]`);
     });
     next();
 });
@@ -36,11 +42,11 @@ server.use((req: Request, res: Response) => {
 
 mongoose.connect(config.mongo.url, config.mongo.options)
     .then( () => {
-        logging.info(NAMESPACE, 'DB Connected');
-        server.listen(config.server.port, () => {
-            logging.info(NAMESPACE, `Server is running on port: ${config.server.port}`);
+        logging.info('DB Connected');
+        server.listen(config.port, () => {
+            logging.info(`Server is running on port: ${config.port}`);
         });
     })
     .catch( (err) => {
-        logging.error(NAMESPACE, `DB NOT CONNECTED! Error: ${err.message}`)
+        logging.error(`DB NOT CONNECTED! Error: ${err.message}`)
     });
