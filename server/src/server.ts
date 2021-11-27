@@ -18,9 +18,11 @@ server.use(cookieParser())
 server.use(express.urlencoded({extended: false}));
 server.use(errorHandler);
 
+console.log(config.clientPath)
+
 server.set("view engine", "ejs");
 server.set('views', path.join(config.clientPath, 'views', 'pages'));
-server.use('/static', express.static(path.join(config.clientPath , 'client', 'public')));
+server.use('/static', express.static(path.join(config.clientPath, 'public')));
 
 server.use((req: Request, res: Response, next: NextFunction) => {
     logging.info(`METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);

@@ -1,5 +1,3 @@
-import Cookies from '/static/js/js.cookie.min.mjs';
-
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.products-filter').forEach(node => {
         const node_items = node.querySelectorAll('.products-filter__item > .products-filter__text');

@@ -1,0 +1,1 @@
+import Cookies from '/static/js/js.cookie.min.mjs';

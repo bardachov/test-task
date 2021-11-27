@@ -1,2 +1,4 @@
 import { Request } from "express";
-export type TypedRequest<T> = Request & T;
+type TypedRequest<T> = Request & T;
+
+export default TypedRequest;

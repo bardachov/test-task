@@ -7,7 +7,7 @@ import User from '../../models/types/user';
 import CryptoJS from 'crypto-js';
 import config from '../../config/config';
 import jwt from 'jsonwebtoken'
-import { TypedRequest } from '../../types/TypedRequest';
+import TypedRequest from '../../types/TypedRequest';
 import authenticate from '../../middleware/authenticate.middleware';
 import Product from '../../models/types/product';
 

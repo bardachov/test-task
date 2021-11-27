@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import CryptoJS from 'crypto-js';
 import config from '../config/config';
 import UserModel from '../models/User.model';
-import { TypedRequest } from '../types/TypedRequest';
+import TypedRequest from '../types/TypedRequest';
 
 interface authenticateOptions{
     permission?: number,

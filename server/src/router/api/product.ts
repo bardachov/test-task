@@ -4,7 +4,7 @@ import Product from '../../models/types/product';
 import UserModel from '../../models/User.model';
 import User from '../../models/types/user';
 import authenticate from '../../middleware/authenticate.middleware';
-import { TypedRequest } from '../../types/TypedRequest';
+import TypedRequest from '../../types/TypedRequest';
 import rateLimit from 'express-rate-limit';
 import {body, query} from 'express-validator';
 import validator from '../../middleware/validator.middleware';
