@@ -18,8 +18,6 @@ server.use(cookieParser())
 server.use(express.urlencoded({extended: false}));
 server.use(errorHandler);
 
-console.log(config.clientPath)
-
 server.set("view engine", "ejs");
 server.set('views', path.join(config.clientPath, 'views', 'pages'));
 server.use('/static', express.static(path.join(config.clientPath, 'public')));
