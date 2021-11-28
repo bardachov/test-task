@@ -34,10 +34,7 @@ server.use('/', pages);
 server.use('/api', api);
 
 server.use((req: Request, res: Response) => {
-    const error = new Error('Not found');
-    return res
-            .status(404)
-            .json({message: error.message});
+    return res.render('404');
 });
 
 mongoose.connect(config.mongo.url, config.mongo.options)

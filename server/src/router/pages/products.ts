@@ -10,7 +10,12 @@ router.get('/', [authenticate({skipRes: true})], async(req: TypedRequest<{user?:
     if (!req.user) return res.redirect('/login');
 
     const products = await UserModel.findOne({email: req.user.email}).populate<Array<Product>>('products').orFail().then(doc => doc.products);
-    return res.render('products', {account: req.user, products});
-})
+    return res.render('products/index', {account: req.user, products});
+});
+
+router.get('/create', [authenticate({skipRes: true})], async(req: TypedRequest<{user?: User}>, res: Response) => {
+    if (!req.user) return res.redirect('/login');
+    return res.render('products/create', {account: req.user});
+});
 
 export default router;

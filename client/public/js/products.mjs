@@ -1,6 +1,15 @@
 import Cookies from '/static/js/js.cookie.min.mjs';
 Notiflix.Notify.init({timeout: 3000, position: 'right-bottom'});
 
+class Validate{
+    addCreateListener(JQElement){
+
+    }
+    addEditListener(JQElement){
+        
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = $('#log-out-btn');
 
@@ -8,5 +17,4 @@ document.addEventListener('DOMContentLoaded', () => {
         Cookies.remove('authorization');
         window.location = '/';
     });
-
 })
