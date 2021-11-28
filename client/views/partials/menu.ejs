@@ -39,5 +39,20 @@
             </li>
         </ul>
     </div>
-    <div class="navigation__rigth"></div>
+    <div class="navigation__rigth">
+        <div class="controls">
+            <% if (user.auth) { %>
+                <a class="controls__item" href="/account">
+                    <i class='bx bx-user-circle bx-sm'></i>
+                </a>
+                <a class="controls__item" id ='log-out-btn'>
+                    <i class='bx bx-log-out bx-sm'></i>
+                </a>
+            <% } else { %>
+                <a class="controls__item" href="/login">
+                    <i class='bx bx-log-in bx-sm' ></i>
+                </a>
+            <% } %> 
+        </div>
+    </div>
 </nav>

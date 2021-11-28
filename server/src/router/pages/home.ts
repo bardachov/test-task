@@ -7,7 +7,7 @@ import User from '../../models/types/user';
 const router = Router();
 router.get('/', [authenticate({skipRes: true})] ,async(req: TypedRequest<{user?: User}>, res: Response) => {
     const products = await ProductsModel.find({}).lean();
-    const user = req.user ? {auth: true, user: req.user} : {auth: false};
+    const user = req.user ? {auth: true, account: req.user} : {auth: false};
     return res.render('index', {products, user});
 });
 

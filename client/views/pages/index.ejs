@@ -6,7 +6,7 @@
 </head>
 <body>
     <header>
-        <%- include('../partials/menu') %> 
+        <%- include('../partials/menu', {user}) %>
     </header>
     <div class="container">
         <main class="content">
@@ -107,6 +107,6 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="module" src="/static/js/js.cookie.min.mjs"></script>
-    <script type="module" src="/static/js/index.js"></script>
+    <script type="module" src="/static/js/index.mjs"></script>
 </body>
 </html>
