@@ -32,12 +32,20 @@ const MONGO = {
     url: MONGODB_URL
 };
 
+const CDN_PATH = '/cdn';
+const CDN_PHOTOS = `${CDN_PATH}/photos`;
+const CDN = {
+    root: CDN_PATH,
+    photos: CDN_PHOTOS
+}
+
 const config = {
     node: NODE,
     mongo: MONGO,
     port: PORT,
     secure: LOCAL_CONFIG.secure,
-    clientPath: ClientPATH
+    clientPath: ClientPATH,
+    cdn: CDN
 };
 
 export default config;

@@ -71,7 +71,7 @@
                     </div>
                     <div class="row">
                         <% for( let i = 0; i < products.length; i++ ) { %>
-                            <%- include('../partials/content/product', {title: products[i].name, image: products[i].image, price: products[i].price}) %>
+                            <%- include('../partials/content/product', {title: products[i].name, image: products[i].image.path, price: products[i].price}) %>
                         <% } %>
                     </div>
                 </article>
@@ -93,8 +93,10 @@
                     </div>
                 </div>
                 <div class="row slider">
-                    <% for( let i = 0; i < 20; i++ ) { %>
-                        <%- include('../partials/content/product', {title: products[0].name, image: products[0].image, price: products[0].price}) %>
+                    <% for( let i = 0; i < 5; i++ ) { %>
+                        <% for( let product of  products) { %>
+                            <%- include('../partials/content/product', {title: product.name, image: product.image.path, price: product.price}) %>
+                        <% } %>
                     <% } %>
                 </div>
             </section>

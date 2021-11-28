@@ -4,7 +4,11 @@ import Product from './types/product';
 const ProductModel = new Schema({
     name: {type: String, required: true},
     price: {type: Number, required: true},
-    image: {type: String, required: true},
+    image: {
+        filename: {type: String, required: true, unique: true},
+        path: {type: String},
+        base64encode: {type: String}
+    },
     description: {type: String}
 });
 

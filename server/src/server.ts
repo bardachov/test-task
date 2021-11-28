@@ -5,9 +5,9 @@ import logger from './config/logger';
 import path from 'path';
 import api from './router/api';
 import pages from './router/pages';
+import cdn from './router/cdn';
 import cookieParser from 'cookie-parser';
 import errorHandler from './middleware/error.middleware';
-
 
 const server = express();
 const NAMESPACE = 'SERVER';
@@ -32,6 +32,7 @@ server.use((req: Request, res: Response, next: NextFunction) => {
 
 server.use('/', pages);
 server.use('/api', api);
+server.use('/cdn', cdn);
 
 server.use((req: Request, res: Response) => {
     return res.render('404');

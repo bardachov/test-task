@@ -2,5 +2,9 @@ export default interface Product {
     name: string,
     description: string,
     price: number,
-    image: string,
+    image: {
+        filename: string,
+        path: string,
+        base64encode: string
+    },
 };
