@@ -5,7 +5,7 @@ import User from '../../models/types/user';
 
 const router = Router();
 router.get('/', [authenticate({skipRes: true})] ,async(req: TypedRequest<{user?: User}>, res: Response) => {
-    return req.user ?  res.redirect('/account') : res.render('login');
+    return req.user ?  res.redirect('/products') : res.render('login');
 })
 
 export default router;

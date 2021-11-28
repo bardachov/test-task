@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.2/dist/notiflix-3.2.2.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper z-depth-2 grey">
+              <a href="#" class="brand-logo">Products Page</a>
+              <ul id="nav-mobile" class="right">
+                <li><a href="/">Home</a></li>
+                <li><a>Products</a></li>
+                <li><a>Add new product</a></li>
+                <li><a id='log-out-btn'><i class='bx bx-log-out bx-sm'></i></a></li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+
+    <center>
+        <% if (products.length == 0) { %>
+            <h1>No own products yet...</h1>
+            <p class="text-plain">Add them!)</p>
+        <% } else { %>
+          <%# In DEV %> 
+        <% } %>
+    </center>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.2/dist/notiflix-3.2.2.min.js"></script>
+    <script type="module" src="/static/js/js.cookie.min.mjs"></script>
+    <script type="module" src="/static/js/products.mjs"></script>
+</body>
+</html>

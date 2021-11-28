@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flags.register = true;
         flags.repeat = Validator.repeat(flags.register, passwordBox, repeatBox, repeatHepler);
         headerText.text('Register new account');
+        submitBtn.text('REGISTER');
         registerBtn.addClass('hide');
         loginBtn.removeClass('hide');
         repeatContainer.removeClass('hide');
@@ -100,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flags.register = false;
         flags.repeat = Validator.repeat(flags.register, passwordBox, repeatBox, repeatHepler);
         headerText.text('Login into your account');
+        submitBtn.text('LOGIN');
         registerBtn.removeClass('hide');
         loginBtn.addClass('hide');
         repeatContainer.addClass('hide');
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Notify.success('Success');
                     Cookies.set('authorization', `${res.data.type} ${res.data.token}`);
 
-                    window.location = '/account';
+                    window.location = '/products';
                 }catch(err){
                     Notify.failure('Server return invalid data!');
                 }

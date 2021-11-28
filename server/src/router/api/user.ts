@@ -51,7 +51,11 @@ router.post(
 
 router.post('/login',
     [
-        rateLimit({windowMs: 60 * 1000, max: 5}),
+        rateLimit({
+            windowMs: 60 * 1000,
+            max: 5,
+            message: JSON.stringify({message: 'Too many requests, please try again later.'})
+        }),
         body('password', 'Password must be at least 6 characters and no more than 32')
             .notEmpty()
             .isString()
@@ -66,10 +70,10 @@ router.post('/login',
             const {email, password} = req.body;
 
             const candidate = await UserModel.findOne({email}).lean();
-            if (!candidate) return res.status(404).json({message: 'User not found'});
+            if (!candidate) return res.status(404).json({message: 'Invalid password or email'});
     
             const decodedPassword = await CryptoJS.AES.decrypt(candidate.password, config.secure.aes).toString(CryptoJS.enc.Utf8);
-            if (password !== decodedPassword) return res.status(401).json({message: '401: unauthorized'});
+            if (password !== decodedPassword) return res.status(401).json({message: 'Invalid password or email'});
 
             const encodedPassword = await CryptoJS.AES.encrypt(password, config.secure.aes).toString();
 
@@ -80,21 +84,5 @@ router.post('/login',
         }
     }
 )
-
-router.get('/products',
-    [
-        authenticate()
-    ],
-    async (req: TypedRequest<{user?: User}>, res: Response) => {
-        try{
-            if (!req.user) return res.status(401).json({message: '401: Unauthorized'});
-            const products = await UserModel.findOne({email: req.user.email}).populate<Array<Product>>('products').lean();
-            return res.status(200).json(products);
-        }catch(server_error){
-            return res.status(500).json({message: 'Something went wrong...'});
-        }
-    }
-)
-
 
 export default router;
