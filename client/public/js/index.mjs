@@ -10,10 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
     });
-    document.querySelector('#log-out-btn').addEventListener('click', () => {
+    $('#log-out-btn').click('click', () => {
         Cookies.remove('authorization');
-        window.location.reload();
-    })
+        $.ajax({
+            url: "",
+            context: document.body,
+            success: function(s,x){
+                $(this).html(s);
+            }
+        });
+    });
+
     $('.slider').slick({
         infinite: true,
         slidesToShow: 4,
