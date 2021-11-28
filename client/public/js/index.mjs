@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
     });
-    $('#log-out-btn').click('click', () => {
+    $('#log-out-btn').click(() => {
         Cookies.remove('authorization');
         $.ajax({
             url: "",
