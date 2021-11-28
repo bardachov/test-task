@@ -119,9 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Notify.success('Success');
                     Cookies.set('authorization', `${res.data.type} ${res.data.token}`);
 
-                    //if member authorized -> redirect to panel with own product.
-                    //But this panel doesn't exist now.
-                    window.location = '/';
+                    window.location = '/account';
                 }catch(err){
                     Notify.failure('Server return invalid data!');
                 }
