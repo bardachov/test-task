@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../../partials/head') %> 
+    <%- include('../partials/head') %> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.2/dist/notiflix-3.2.2.min.css">
 </head>
 <body>
     <header>
-      <%- include('../../partials/products/navbar') %> 
+      <%- include('../partials/products/navbar') %> 
     </header>
     <main>
       <center>
@@ -16,6 +16,7 @@
           <% if (products.length == 0) { %>
             <h1>No own products yet...</h1>
           <% } else { %>
+            <h1>Own Products</h1>
             <table class="highlight centered bordered responsive-table">
               <thead>
                 <tr>
@@ -38,12 +39,50 @@
                     <div class="modal-container" data-n=<%= idx %>  data-product-id=<%= products[idx]._id %>>
                       <div id="product-edit-<%= idx %>" class="modal product-edit-init product-edit-modal-<%= idx %>">
                         <div class="modal-content">
-                          <%- include('../../partials/products/editProduct', {name: products[idx].name}) %> 
+                          <%- include('../partials/products/editProduct', {name: products[idx].name}) %> 
                         </div>
                       </div>
                       <div id="product-delete-<%= idx %>" class="modal product-delete-init product-delete-modal-<%= idx %>">
                         <div class="modal-content">
-                          <%- include('../../partials/products/deleteProduct', {name: products[idx].name}) %> 
+                          <%- include('../partials/products/deleteProduct', {name: products[idx].name}) %> 
+                        </div>
+                      </div>
+                    </div>
+                  </tr>
+                <% } %>
+              </tbody>  
+            </table>
+          <% } %>
+          <% if (account.admin) { %>
+            <h1>All Products (ADMINS)</h1>
+            <table class="highlight centered bordered responsive-table">
+              <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Choice</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for( let idx = 0; idx < allProducts.length; idx++ ) { %>
+                  <tr class="product" data-product-id=<%= allProducts[idx]._id %>>
+                    <td><%= allProducts[idx].name %></td>
+                    <td><%= allProducts[idx].price %></td>
+                    <td><%= allProducts[idx].description %></td>
+                    <td><a class="waves-effect waves-teal btn-flat deep-purple accent-1" href=<%= allProducts[idx].image.path %> target="_blank" rel="noopener noreferrer">Show</a></td>
+                    <td><a class="product-edit waves-effect waves-teal btn-flat teal accent-3 modal-trigger" href="#product-edit-admin-<%= idx %>">Edit</a> <a href="#product-delete-admin-<%= idx %>" class="product-delete modal-trigger waves-effect waves-teal btn-flat red darken-1">Delete</a></td>
+
+                    <div class="modal-container-admins" data-n=<%= idx %>  data-product-id=<%= allProducts[idx]._id %>>
+                      <div id="product-edit-admin-<%= idx %>" class="modal product-edit-init-admin product-edit-modal-admin-<%= idx %>">
+                        <div class="modal-content">
+                          <%- include('../partials/products/editProduct', {name: allProducts[idx].name}) %> 
+                        </div>
+                      </div>
+                      <div id="product-delete-admin-<%= idx %>" class="modal product-delete-init-admin product-delete-modal-<%= idx %>">
+                        <div class="modal-content">
+                          <%- include('../partials/products/deleteProduct', {name: allProducts[idx].name}) %> 
                         </div>
                       </div>
                     </div>

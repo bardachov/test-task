@@ -49,7 +49,7 @@ router.route('/')
                 max: 10,
                 message: JSON.stringify({message: 'Too many requests, please try again later.'})
             }),
-            query('id')
+            body('id')
                 .notEmpty()
                 .isString(),
             authenticate()

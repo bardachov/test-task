@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import TypedRequest from "../types/TypedRequest";
-import User from "../models/types/user";
+import User, {Permissions} from "../models/types/user";
 import ProductModel from "../models/Product.model";
 import UserModel from "../models/User.model";
 import cryptoString from "../libs/cryptoString";
@@ -30,14 +30,19 @@ class ProductController{
     async delete(req: TypedRequest<{user?: User}>, res: Response){
         try{
             if (!req.user) return res.status(401).json({message: '401: Unauthorized'});
-            const product = await ProductModel.findById(req.query.id).lean();
-            if (!product) return res.status(404).json({message: 'Product not found'});
-
+            const product = await ProductModel.findById(req.body.id).lean();
+            if (!product) return res.status(404).json({message: 'Product not found'});  
+            const owner = await UserModel.findOne({products: req.body.id});
+            if (!owner) {
+                await ProductModel.findByIdAndDelete(req.body.id);
+                return res.status(200).json({message: 'Product deleted'});
+            }
+            if (owner.email != req.user.email && req.user.permission < Permissions.ADMIN) return res.status(403).json({message: 'Permission Denied'});
             await ProductModel.findByIdAndDelete(req.body.id);
-            await UserModel.findOneAndUpdate({email: req.user.email}, {$pull: {products: product._id}});
+            await UserModel.findOneAndUpdate({email: owner.email}, {$pull: {products: req.body.id}});
             return res.status(200).json({message: 'Product deleted'});
         }catch(server_error: any){
-            return res.status(4000).json({message: server_error.message});
+            return res.status(400).json({message: server_error.message});
         }
     }
     async read(req: Request, res: Response){

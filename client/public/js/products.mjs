@@ -54,9 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const productDescription = $('#product-description');
     const submitBtn = $('#submit-btn');
 
-    const editModal = M.Modal.init(document.querySelectorAll('.product-edit-init'), {});
+    const editModals = M.Modal.init(document.querySelectorAll('.product-edit-init'), {});
+    const deleteModals = M.Modal.init(document.querySelectorAll('.product-delete-init'), {});
     const createModal = M.Modal.init(document.querySelectorAll('.product-create-init'), {});
-    const deleteModal = M.Modal.init(document.querySelectorAll('.product-delete-init'), {});
+    const deleteModalsAdmin = M.Modal.init(document.querySelectorAll('.product-delete-init-admin'), {});
+    const editModalsAdmin = M.Modal.init(document.querySelectorAll('.product-create-init-admin'), {});
 
     const ajaxRefresh = () => {
         $.ajax({
@@ -94,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: productDescription.val()
         }).then( () => {
             Notify.success('Product created!');
-            return ajaxRefresh();
+            window.location.reload();
         }).catch( (err) => {
             return Notify.failure(err.response?.data?.message || err.message);
         }).finally( () => {
@@ -102,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     });
 
-    const initModal = async (modal) => {
+    const initModal = async (modal, editModals, deleteModals) => {
         const product_id = modal.getAttribute('data-product-id');
-        const delModal = deleteModal[Number(modal.getAttribute('data-n'))];
-        const updateModal = editModal[Number(modal.getAttribute('data-n'))];
+        const delModal = deleteModals[Number(modal.getAttribute('data-n'))];
+        const updateModal = editModals[Number(modal.getAttribute('data-n'))];
         const remove = modal.querySelector('.btn-agree');
         const dismiss = modal.querySelector('.btn-dismiss');
 
@@ -114,10 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
         $(remove).click( () => {
-            axios.delete(`/api/products?id=${product_id}`)
+            axios.delete(`/api/products`, {data: {id: product_id}})
                 .then(() => {
                     Notify.success('Product deleted!');
-                    delModal.close();
                     window.location.reload();
                 })
                 .catch( (err) => {
@@ -128,6 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelectorAll('.modal-container').forEach( async (modal) => {
-        initModal(modal);
+        initModal(modal, editModals, deleteModals);
+    })
+    document.querySelectorAll('.modal-container-admins').forEach( async (modal) => {
+        initModal(modal, editModalsAdmin, deleteModalsAdmin);
     })
 })
