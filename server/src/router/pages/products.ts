@@ -13,9 +13,4 @@ router.get('/', [authenticate({skipRes: true})], async(req: TypedRequest<{user?:
     return res.render('products/index', {account: req.user, products});
 });
 
-router.get('/create', [authenticate({skipRes: true})], async(req: TypedRequest<{user?: User}>, res: Response) => {
-    if (!req.user) return res.redirect('/login');
-    return res.render('products/create', {account: req.user});
-});
-
 export default router;

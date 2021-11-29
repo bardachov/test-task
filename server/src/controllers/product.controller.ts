@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import TypedRequest from "../types/TypedRequest";
 import User from "../models/types/user";
 import ProductModel from "../models/Product.model";
@@ -23,6 +23,28 @@ class ProductController{
             });
             await UserModel.findOneAndUpdate({email: req.user.email}, {$push: {products: product._id}});
             return res.status(200).json({product: product._id.toString()});
+        }catch(server_error: any){
+            return res.status(4000).json({message: server_error.message});
+        }
+    }
+    async delete(req: TypedRequest<{user?: User}>, res: Response){
+        try{
+            if (!req.user) return res.status(401).json({message: '401: Unauthorized'});
+            const product = await ProductModel.findById(req.query.id).lean();
+            if (!product) return res.status(404).json({message: 'Product not found'});
+
+            await ProductModel.findByIdAndDelete(req.body.id);
+            await UserModel.findOneAndUpdate({email: req.user.email}, {$pull: {products: product._id}});
+            return res.status(200).json({message: 'Product deleted'});
+        }catch(server_error: any){
+            return res.status(4000).json({message: server_error.message});
+        }
+    }
+    async read(req: Request, res: Response){
+        try{
+            const product = await ProductModel.findById(req.query.id).lean();
+            if (!product) return res.status(404).json({message: 'Product Not Found'});
+            return res.status(200).json(product);
         }catch(server_error: any){
             return res.status(4000).json({message: server_error.message});
         }

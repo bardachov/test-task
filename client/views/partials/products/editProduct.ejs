@@ -1,0 +1,36 @@
+<h5>Edit Product: <b><%= name %></b></h5>
+<div class="row">
+  <div class="col s12">
+      <div class="row">
+          <div class="input-field col s6">
+              <input class="product-name" type="text">
+              <label for="product-name">Product name</label>
+          </div>
+          <div class="input-field col s6">
+              <input class="product-price" type="text"">
+              <label for="product-price">Price</label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+              <textarea class="product-description materialize-textarea"></textarea>
+              <label for="product-description">Description</label>
+          </div>
+      </div>
+      <div class="row">
+          <h5 style="font-weight: 800;">Select new image</h5>
+          <div class="file-field input-field">
+              <div class="btn grey darken-2">
+                <span>Select</span>
+                <input type="file" class='product-image'>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="product-image-wrapper file-path validate" type="text">
+              </div>
+            </div>
+      </div>
+      <div class='row'>
+        <button name='submit-btn' class='submit-btn col s12 btn btn-large waves-effect grey darken-2'>Save</button>
+      </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ class Validate{
     }
 
     price(JQElement){
-        if (isNaN(Number(JQElement.val()))){
+        if (isNaN(Number(JQElement.val())) || JQElement.val().length == 0){
             this.notify.failure('Product price should only be a number');
             JQElement.addClass('invalid');
             JQElement.removeClass('valid');
@@ -23,6 +23,18 @@ class Validate{
         }
         JQElement.addClass('valid');
         JQElement.removeClass('invalid');
+        return true;
+    }
+
+    image(JQElement, JQWrapper){
+        if (!JQElement.prop('files')[0]){
+            this.notify.failure('Select Image!');
+            JQWrapper.addClass('invalid');
+            JQWrapper.removeClass('valid');
+            return false;
+        }
+        JQWrapper.addClass('valid');
+        JQWrapper.removeClass('invalid');
         return true;
     }
 
@@ -36,59 +48,86 @@ document.addEventListener('DOMContentLoaded', () => {
     const Validator = new Validate(Notify);
     const logoutBtn = $('#log-out-btn');
     const productImageBox = $('#product-image');
+    const productImageWrapper = $('#product-image-wrapper')
     const productNameBox = $('#product-name');
     const productPriceBox = $('#product-price');
     const productDescription = $('#product-description');
-    const submit = $('#submit-btn');
+    const submitBtn = $('#submit-btn');
 
-    let productImage;
-    let flags = {
-        image: false,
-        name: false,
-        price: false
+    const editModal = M.Modal.init(document.querySelectorAll('.product-edit-init'), {});
+    const createModal = M.Modal.init(document.querySelectorAll('.product-create-init'), {});
+    const deleteModal = M.Modal.init(document.querySelectorAll('.product-delete-init'), {});
+
+    const ajaxRefresh = () => {
+        $.ajax({
+            url: "",
+            context: document.body,
+            success: function(s,x){
+                $(this).html(s);
+            }
+        });
     }
-    productImageBox.on('change', async (event) => {
-        const file = event.target.files[0];
-        const DataUrl = await new Promise( (resolve, reject) => {
-            const reader = new FileReader();    
-            reader.addEventListener('load', () => {
-                flags.image = true;
-                resolve(reader.result)
-            });
-            reader.addEventListener('error', () => {
-                flags.image = false;
-                resolve(reader.result);
-            });
-            reader.readAsDataURL(file);
-        })
-        productImage = DataUrl;
-    });
-
-    productNameBox.on('change', () => {
-        flags.name = Validator.name(productNameBox)
-    });
-
-    productPriceBox.on('change', () => {
-        flags.price = Validator.price(productPriceBox)
-    });
-
-
-    submit.click( () => {
-        if (!flags.image || !flags.price || !flags.name) return Notify.failure('Please enter correct data');
-        axios.post('/api/products/create', {
-            image: productImage,
-            name: productNameBox.val(),
-            price: Number(productPriceBox.val()),
-            description: productDescription.val()
-        }).then( (res) => {
-            return Notify.success('Product created!');
-        }).catch( (err) => {
-            return Notify.failure(err.response?.data?.message || err.message);
-        })
+    const imageToBase64 = async (file) => new Promise( (resolve) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            resolve(reader.result)
+        });
+        reader.readAsDataURL(file);
     })
 
     logoutBtn.click( () => {
         Cookies.remove('authorization');
         window.location = '/';
     });
+
+    submitBtn.click( async () => {
+        let flags = {
+            image: Validator.image(productImageBox, productImageWrapper),
+            name: Validator.name(productNameBox),
+            price: Validator.price(productPriceBox)
+        };
+        if (!flags.image || !flags.price || !flags.name) return;
+        axios.post('/api/products', {
+            image: await imageToBase64(productImageBox.prop('files')[0]),
+            name: productNameBox.val(),
+            price: Number(productPriceBox.val()),
+            description: productDescription.val()
+        }).then( () => {
+            Notify.success('Product created!');
+            return ajaxRefresh();
+        }).catch( (err) => {
+            return Notify.failure(err.response?.data?.message || err.message);
+        }).finally( () => {
+            createModal.close();
+        })
+    });
+
+    const initModal = async (modal) => {
+        const product_id = modal.getAttribute('data-product-id');
+        const delModal = deleteModal[Number(modal.getAttribute('data-n'))];
+        const updateModal = editModal[Number(modal.getAttribute('data-n'))];
+        const remove = modal.querySelector('.btn-agree');
+        const dismiss = modal.querySelector('.btn-dismiss');
+
+        $(dismiss).click( () => {
+            delModal.close();
+        })
+
+        $(remove).click( () => {
+            axios.delete(`/api/products?id=${product_id}`)
+                .then(() => {
+                    Notify.success('Product deleted!');
+                    delModal.close();
+                    window.location.reload();
+                })
+                .catch( (err) => {
+                    delModal.close();
+                    return Notify.failure(err.response?.data?.message || err.message);
+                })
+        })
+    }
+
+    document.querySelectorAll('.modal-container').forEach( async (modal) => {
+        initModal(modal);
+    })
 })
