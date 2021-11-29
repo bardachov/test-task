@@ -54,6 +54,31 @@ class ProductController{
             return res.status(4000).json({message: server_error.message});
         }
     }
+    async update(req: TypedRequest<{user?: User}>, res: Response){
+        try{
+            if (!req.user) return res.status(401).json({message: '401: Unauthorized'});
+            const {price, image, name, description, id} = req.body;
+            const product = await ProductModel.findById(id).lean()
+            if (!product) return res.status(404).json({message: 'Product not found'});
+            const owner = await UserModel.findOne({products: id});
+            if (!owner) return res.status(400).json({message: 'Owner not found'});
+            if (owner.email != req.user.email && req.user.permission < Permissions.ADMIN) return res.status(403).json({message: 'Permission Denied'});
+
+            await ProductModel.findByIdAndUpdate(id, {
+                price: price || product.price,
+                description: description || product.description,
+                name: name || product.name,
+                image: {
+                    filename: product.image.filename,
+                    path: product.image.path,
+                    base64encode: image || product.image.base64encode
+                }
+            })
+            return res.status(200).json({message: 'Product updated'});
+        }catch(server_error: any){
+            return res.status(4000).json({message: server_error.message}); 
+        }
+    }
 }
 
 export default new ProductController();

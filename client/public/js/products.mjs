@@ -54,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const productDescription = $('#product-description');
     const submitBtn = $('#submit-btn');
 
-    const editModals = M.Modal.init(document.querySelectorAll('.product-edit-init'), {});
-    const deleteModals = M.Modal.init(document.querySelectorAll('.product-delete-init'), {});
-    const createModal = M.Modal.init(document.querySelectorAll('.product-create-init'), {});
-    const deleteModalsAdmin = M.Modal.init(document.querySelectorAll('.product-delete-init-admin'), {});
-    const editModalsAdmin = M.Modal.init(document.querySelectorAll('.product-create-init-admin'), {});
+    const editModals = M.Modal.init(document.querySelectorAll('.product-edit-init'));
+    const deleteModals = M.Modal.init(document.querySelectorAll('.product-delete-init'));
+    const createModal = M.Modal.init(document.querySelectorAll('.product-create-init'));
+    const deleteModalsAdmin = M.Modal.init(document.querySelectorAll('.product-delete-init-admin'));
+    const editModalsAdmin = M.Modal.init(document.querySelectorAll('.product-edit-init-admin'));
 
     const ajaxRefresh = () => {
         $.ajax({
@@ -107,9 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const initModal = async (modal, editModals, deleteModals) => {
         const product_id = modal.getAttribute('data-product-id');
         const delModal = deleteModals[Number(modal.getAttribute('data-n'))];
-        const updateModal = editModals[Number(modal.getAttribute('data-n'))];
+        const editModal = editModals[Number(modal.getAttribute('data-n'))];
         const remove = modal.querySelector('.btn-agree');
         const dismiss = modal.querySelector('.btn-dismiss');
+        const submit = modal.querySelector('.submit-btn');
+
+        const productImageBox = $(modal.querySelector('.product-image'));
+        const productImageWrapper = $(modal.querySelector('.product-image-wrapper'));
+        const productNameBox = $(modal.querySelector('.product-name'));
+        const productPriceBox = $(modal.querySelector('.product-price'));
+        const productDescription = $(modal.querySelector('.product-description'));
 
         $(dismiss).click( () => {
             delModal.close();
@@ -125,6 +132,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     delModal.close();
                     return Notify.failure(err.response?.data?.message || err.message);
                 })
+        })
+
+        $(submit).click( async () =>{
+
+            if (productImageBox.prop('files')[0] && !Validator.image(productImageBox, productImageWrapper)) return; 
+            if (productPriceBox.val().length != 0 && !Validator.price(productPriceBox)) return; 
+            if (productNameBox.val().length != 0 && !Validator.name(productNameBox)) return; 
+            if (productNameBox.val().length == 0 && productPriceBox.val().length == 0 && productDescription.val().length == 0 && !productImageBox.prop('files')[0]) return editModal.close()
+            
+            axios.patch('/api/products', {
+                name: productNameBox.val() || null,
+                price: Number(productPriceBox.val()) || null,
+                image: productImageBox.prop('files')[0] ? await imageToBase64(productImageBox.prop('files')[0]) : null,
+                description: productDescription.val() || null,
+                id: product_id
+            }).then( () => {
+                Notify.success('Product created!');
+                window.location.reload();
+            }).catch( (err) => {
+                return Notify.failure(err.response?.data?.message || err.message);
+            }).finally( () => {
+                editModal.close();
+            })
         })
     }
 

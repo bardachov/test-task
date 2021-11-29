@@ -30,13 +30,16 @@ router.route('/')
             body('price', 'The price should be a number.')
                 .notEmpty()
                 .isNumeric(),
-            body('name', 'name must be more than 3 and less than 32 characters')
+            body('name', 'Name must be more than 3 and less than 32 characters')
                 .notEmpty()
                 .isString()
                 .isLength({min: 3, max: 32}),
             body('image', 'Image required')
                 .notEmpty()
                 .isString(),
+            body('description', 'Description must be less than 2048 characters')
+                .isString()
+                .isLength({max: 2048}),
             validator,
             authenticate()
         ],
@@ -55,6 +58,29 @@ router.route('/')
             authenticate()
         ],
         ProductController.delete
+    )
+    .patch(
+        [
+            body('description', 'Description must be less than 2048 characters')
+                .optional({nullable: true})
+                .isString()
+                .isLength({max: 2048}),
+            body('image', 'image is only string value')
+                .optional({nullable: true})
+                .isString(),
+            body('name', 'Name must be more than 3 and less than 32 characters')
+                .optional({nullable: true})
+                .isString()
+                .isLength({min: 3, max: 32}),
+            body('price', 'price is only number value')
+                .optional({nullable: true})
+                .isNumeric(),
+            body('id', 'Invalid product id')
+                .isString(),
+            validator,
+            authenticate()
+        ],
+        ProductController.update
     )
 
 export default router;
